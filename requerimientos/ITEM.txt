@@ -1,0 +1,12 @@
+///////aplicacion web responsive 
+
+1- responsive 
+1a- ushuaia 
+2- aplicacion del clima 8 dias (el actual + 7siguiente)
+* conexion con la api 
+* https://api.open-meteo.com/v1/forecast?latitude=-54.82&longitude=-68.36&hourly=temperature_2m,apparent_temperature,precipitation,windspeed_10m&timezone=America%2FSao_Paulo 
+
+3- Esta API devuelve información de la temperatura ambiente, la sensación térmica, las precipitaciones y la velocidad del viento para el día actual y los siguientes 6 días de la semana (7 días en total).
+4- Consideraciones climáticas ¿cuántos mm por hora son "lluvia"? Con menos de 2 mm/h diremos "lluvias débiles". De 2 a 15 mm/h será "lluvia". De 15 a 30 saltaremos a "lluvias fuertes". De 30 a 60 "lluvias muy fuertes". Finalmente más de 60 mm/h se describirán como "lluvias torrenciales".
+
+5-
