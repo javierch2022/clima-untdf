@@ -53,3 +53,6 @@ fetch(apiClima)
                   </div> `
         
         });
+
+
+        
