@@ -3,6 +3,10 @@ body{
     color:white;   
 }
 
+#title{
+    font-size: 7rem;
+}
+
 #section1{
     margin-top:50px;
     justify-items: center;
@@ -13,6 +17,11 @@ body{
     justify-items: center;
     text-align: center;
     margin-bottom: 100px;
+}
+#temp1{
+    font-size:6rem;
+    margin-bottom:70px;
+    justify-items: center;
 }
 #section3{
     display:flex;
