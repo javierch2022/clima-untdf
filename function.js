@@ -2,10 +2,8 @@ const apiClima = "https://api.open-meteo.com/v1/forecast?latitude=-54.82&longitu
 
 function buscarPosicion(data, fecha) {
    let pos = 0
-   //pos = data.hourly.time.indexOf(fecha);
-   console.log("data en buscar pos",data, fecha)
-   pos= data.hourly.time.indexOf(fecha);
-   console.log("pos ",pos)
+      pos= data.hourly.time.indexOf(fecha);
+   //console.log("pos ",pos)
    return pos
 }
 
@@ -16,20 +14,23 @@ function selectImagenClima(data, fecha) {
    let lluvia = data.hourly.precipitation[posicion];
    
    switch (lluvia) {
-      case (lluvia < 2):
-         ubicacion = "../img/icon/animated/rainy-1.svg";
+      case (lluvia<1):
+         ubicacion="./img/icon/animated/clear-day.svg";   
+         break;
+      case (lluvia < 2)&(lluvia>1):
+         ubicacion = "./img/icon/animated/rainy-1.svg";
          break;
       case ((lluvia >= 2) & (lluvia < 15)):
-         ubicacion = "../img/icon/animated/rainy-2.svg";
+         ubicacion = "./img/icon/animated/rainy-2.svg";
          break;
       case ((lluvia >= 15) & (lluvia < 30)):
-         ubicacion = "../img/icon/animated/rainy-3.svg";
+         ubicacion = "./img/icon/animated/rainy-3.svg";
          break;
       case ((lluvia >= 30) & (lluvia <= 60)):
-         ubicacion = "../img/icon/animated/rain-and-sleet-mix.svg";
+         ubicacion = "./img/icon/animated/rain-and-sleet-mix.svg";
          break;
       case (lluvia > 60):
-         ubicacion = "../img/icon/animated/severe-thunderstorm.svg";
+         ubicacion = "./img/icon/animated/severe-thunderstorm.svg";
          break;
    }
    //TEST 
@@ -85,6 +86,7 @@ function llenarTabla(data, fecha) {
 }
 
 function datosEnBotones(data, fecha) {
+   let datos;
 
    return
 }
