@@ -1,8 +1,6 @@
 const apiClima = "https://api.open-meteo.com/v1/forecast?latitude=-54.82&longitude=-68.36&hourly=temperature_2m,apparent_temperature,precipitation,windspeed_10m&timezone=America%2FSao_Paulo";
 
 
-
-
 fetch(apiClima)
    .then(response => response.json())
    .then(data => {
@@ -49,7 +47,7 @@ fetch(apiClima)
       let imagen = document.getElementById('imagen')
       imagen.innerHTML = `
                   <div >
-                     <img id= "imagen1" src="../img/icon/animated/cloudy-2-day.svg">
+                     <img id= "imagen1" src="./img/icon/animated/cloudy-2-day.svg">
                   </div> `
 
    });
