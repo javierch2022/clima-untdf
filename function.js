@@ -3,15 +3,18 @@ const apiClima = "https://api.open-meteo.com/v1/forecast?latitude=-54.82&longitu
 function buscarPosicion(data, fecha) {
    let pos = 0
    //pos = data.hourly.time.indexOf(fecha);
+   console.log("data en buscar pos",data, fecha)
    pos= data.hourly.time.indexOf(fecha);
+   console.log("pos ",pos)
    return pos
 }
 
 function selectImagenClima(data, fecha) {
    let ubicacion = "";
-   let posicion = buscarPosicion(fecha);
-   //let lluvia = data.hourly.precipitation[posicion];
-   let lluvia=5;
+   console.log("data en select img",data)
+   let posicion = buscarPosicion(data,fecha);
+   let lluvia = data.hourly.precipitation[posicion];
+   
    switch (lluvia) {
       case (lluvia < 2):
          ubicacion = "../img/icon/animated/rainy-1.svg";
@@ -82,7 +85,7 @@ function llenarTabla(data, fecha) {
 }
 
 function datosEnBotones(data, fecha) {
-   
+
    return
 }
 
@@ -121,7 +124,9 @@ function climaHoy(data, fecha) {
                      <h1 id="condicion1">${data.hourly.windspeed_10m[posicion]} Km/h</h1>
                   </div>`;
    // este bloque para la imagen
+   console.log("data info: ",data);
    let ubicacion = selectImagenClima(data, fecha);
+   
    //let ubicacion = "../img/icon/animated/rainy-1.svg";
    let imagen = document.getElementById('imagen')
    imagen.innerHTML = `
