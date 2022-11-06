@@ -2,39 +2,52 @@ const apiClima = "https://api.open-meteo.com/v1/forecast?latitude=-54.82&longitu
 
 function buscarPosicion(data, fecha) {
    let pos = 0
-      pos= data.hourly.time.indexOf(fecha);
-   //console.log("pos ",pos)
+   pos = data.hourly.time.indexOf(fecha);
+
    return pos
 }
 
 function selectImagenClima(data, fecha) {
    let ubicacion = "";
-   console.log("data en select img",data)
-   let posicion = buscarPosicion(data,fecha);
+   console.log("data en select img", data)
+   let posicion = buscarPosicion(data, fecha);
    let lluvia = data.hourly.precipitation[posicion];
-   
-   switch (lluvia) {
-      case (lluvia<1):
+
+   if (lluvia < 1) {
+      ubicacion = "./img/icon/animated/clear-day.svg";
+   } else if ((lluvia < 2) && (lluvia > 1)) {
+      ubicacion = "./img/icon/animated/rainy-1.svg";
+   } else if ((lluvia >= 2) && (lluvia < 15)) {
+      ubicacion = "./img/icon/animated/rainy-2.svg";
+   } else if ((lluvia >= 15) && (lluvia < 30)) {
+      ubicacion = "./img/icon/animated/rainy-3.svg";
+   } else if ((lluvia >= 30) && (lluvia <= 60)) {
+      ubicacion = "./img/icon/animated/rain-and-sleet-mix.svg";
+   } else if (lluvia > 60) {
+      ubicacion = "./img/icon/animated/severe-thunderstorm.svg";
+   }
+   /*switch (lluvia) {
+      case (lluvia < 1):
          ubicacion="./img/icon/animated/clear-day.svg";   
          break;
-      case (lluvia < 2)&(lluvia>1):
+      case ((lluvia < 2) && (lluvia > 1)):
          ubicacion = "./img/icon/animated/rainy-1.svg";
          break;
-      case ((lluvia >= 2) & (lluvia < 15)):
+      case ((lluvia >= 2) && (lluvia < 15)):
          ubicacion = "./img/icon/animated/rainy-2.svg";
          break;
-      case ((lluvia >= 15) & (lluvia < 30)):
+      case ((lluvia >= 15) && (lluvia < 30)):
          ubicacion = "./img/icon/animated/rainy-3.svg";
          break;
-      case ((lluvia >= 30) & (lluvia <= 60)):
+      case ((lluvia >= 30) && (lluvia <= 60)):
          ubicacion = "./img/icon/animated/rain-and-sleet-mix.svg";
          break;
       case (lluvia > 60):
          ubicacion = "./img/icon/animated/severe-thunderstorm.svg";
          break;
-   }
+   }*/
    //TEST 
-   console.log(ubicacion);
+   //console.log(ubicacion);
    return ubicacion;
 }
 
@@ -85,13 +98,41 @@ function llenarTabla(data, fecha) {
    return
 }
 
-function datosEnBotones(data, fecha) {
-   let datos;
+function datosEnCard(data, fecha) {
+   const dias = [
+      'domingo',
+      'lunes',
+      'martes',
+      'miércoles',
+      'jueves',
+      'viernes',
+      'sábado',
+   ];
+   let numeroDia = new Date(fecha).getDay();
+   let dia = dias[numeroDia];
+   let dato = data.hourly;
+   let posicion = buscarPosicion(data, fecha)+24;
+   let imagen = selectImagenClima(data, fecha);
 
+   let card = document.getElementById('section3');
+   for (i = 1; i < 7; i++) {
+      
+      card.innerHTML += `        
+      <div id= "card" class="card" type="button" value="lunes">
+                  <div class="card-body">
+                      <h5 class="card-title">${dia}</h5><br>
+                      <img id= "test" src=${imagen} class="card-img-top" alt="...">
+                      <h1>${dato.temperature_2m[posicion]}</h1>
+                    </div>
+      </div>
+                    `
+      
+      posicion=posicion+24;
+      numeroDia=numeroDia+1;
+      dia = dias[numeroDia];
+   }
    return
 }
-
-
 
 function climaHoy(data, fecha) {
    let horaActual = new Date;
@@ -126,9 +167,9 @@ function climaHoy(data, fecha) {
                      <h1 id="condicion1">${data.hourly.windspeed_10m[posicion]} Km/h</h1>
                   </div>`;
    // este bloque para la imagen
-   console.log("data info: ",data);
+   console.log("data info: ", data);
    let ubicacion = selectImagenClima(data, fecha);
-   
+
    //let ubicacion = "../img/icon/animated/rainy-1.svg";
    let imagen = document.getElementById('imagen')
    imagen.innerHTML = `
@@ -147,4 +188,5 @@ fetch(apiClima)
       let ahora = moment().startOf('hour').format('YYYY-MM-DD\THH:mm');
       console.log(ahora);
       climaHoy(data, ahora);
+      datosEnCard(data, ahora);
    });
