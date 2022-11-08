@@ -11,7 +11,7 @@ function selectImagenClima(data, fecha) {
    let posicion = buscarPosicion(data, fecha);
    let lluvia = data.hourly.precipitation[posicion];
 
-   if (lluvia < 1) {
+   /*if (lluvia < 1) {
       ubicacion = "./img/icon/animated/clear-day.svg";
    } else if ((lluvia < 2) && (lluvia > 1)) {
       ubicacion = "./img/icon/animated/rainy-1.svg";
@@ -23,8 +23,8 @@ function selectImagenClima(data, fecha) {
       ubicacion = "./img/icon/animated/rain-and-sleet-mix.svg";
    } else if (lluvia > 60) {
       ubicacion = "./img/icon/animated/severe-thunderstorm.svg";
-   }
-   /*switch (lluvia) {
+   }*/
+   switch (true) {
       case (lluvia < 1):
          ubicacion="./img/icon/animated/clear-day.svg";   
          break;
@@ -43,7 +43,7 @@ function selectImagenClima(data, fecha) {
       case (lluvia > 60):
          ubicacion = "./img/icon/animated/severe-thunderstorm.svg";
          break;
-   }*/
+   }
    //TEST 
    //console.log(ubicacion);
    return ubicacion;
@@ -53,7 +53,7 @@ function llenarTabla(data, fecha) {
    let posicion = buscarPosicion(data, fecha);
    let datos = data.hourly;
    //cambio posicion al inicio del dia correspondiente
-   switch (posicion) {
+   switch (true) {
       case (posicion > 12) && (posicion < 24):
          posicion = 13;
          break;
@@ -99,8 +99,8 @@ function llenarTabla(data, fecha) {
    return
 }
 
-function datosEnCard(data, fecha) {
-   //obtengo el string de mañana
+function obtenerDiaSemana(numDia){
+   let dia;
    const dias = [
       'domingo',
       'lunes',
@@ -110,36 +110,39 @@ function datosEnCard(data, fecha) {
       'viernes',
       'sábado',
    ];
-   let numeroDia = new Date(fecha).getDay();
-   let dia = dias[numeroDia];
+   if(numDia>=7){numDia=numDia-7};
+   dia=dias[numDia];
+   return dia;
+}
+
+function datosEnCards(data, fecha) {
+   let numeroDia = new Date(fecha).getDay()+1;
+   const idcard=["card1","card2","card3","card4","card5","card6"];
    //consigo la posicion de mañana 
    let dato = data.hourly;
-   let posicion = buscarPosicion(data, fecha) + 24;
+   let posicion = buscarPosicion(data, fecha)+24;
    // creo las cards de los dias siguientes
+   
    let card = document.getElementById('section3');
-   
-   let idcard="card";
-   
    for (i = 1; i < 7; i++) {
-      idcard=idcard+toString(i);
+      console.log(idcard[i-1]);
+      dia=obtenerDiaSemana(numeroDia);   
       //cambio la fecha al dia siguiente para seleccionar la imagen
-      fecha=dato.time[posicion+24];
+      fecha = dato.time[posicion];
       let imagen = selectImagenClima(data, fecha);
       //cards
       card.innerHTML += `        
-      <div id= "card" class="card" type="button" value="lunes">
+      <div id= ${idcard[i-1]} class="card" type="button" >
                   <div class="card-body">
                       <h5 class="card-title">${dia}</h5><br>
                       <img id= "test" src=${imagen} class="card-img-top" alt="...">
                       <h1>${dato.temperature_2m[posicion]}</h1>
-                      
-                    </div>
+                  </div>
       </div>
                     `
       //cambio la posicion 24 hs y paso al dia siguiente
       posicion += 24;
       numeroDia += 1;
-      dia = dias[numeroDia];
    }
    return
 }
@@ -177,7 +180,7 @@ function climaHoy(data, fecha) {
                      <h1 id="condicion1">${data.hourly.windspeed_10m[posicion]} Km/h</h1>
                   </div>`;
    // este bloque para la imagen
-   console.log("data info: ", data);
+   
    let ubicacion = selectImagenClima(data, fecha);
    let imagen = document.getElementById('imagen')
    imagen.innerHTML = `
@@ -188,17 +191,15 @@ function climaHoy(data, fecha) {
    return
 }
 
-function eventoClick(data,fecha){
-   llenarTabla(data,fecha);
+function eventoClick(data, fecha) {
+   llenarTabla(data, fecha);
 }
-const card1= document.getElementById('')
+
 fetch(apiClima)
    .then(response => response.json())
    .then(data => {
       // variable para la hora dia actual
       let ahora = moment().startOf('hour').format('YYYY-MM-DD\THH:mm');
-      console.log(ahora);
       climaHoy(data, ahora);
-      datosEnCard(data, ahora);
-
+      datosEnCards(data, ahora);
    });

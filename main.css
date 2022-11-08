@@ -37,7 +37,7 @@ body{
 
 }
 
-#card{
+#card1,#card2,#card3,#card4,#card5,#card6{
     text-align: center;
     justify-content:center;
     align-items: center;
