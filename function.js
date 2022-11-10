@@ -39,42 +39,40 @@ function selectImagenClima(data, fecha) {
 function llenarTabla(data, fecha) {
    let posicion = buscarPosicion(data, fecha);
    let datos = data.hourly;
+   console.log("posicion en llenar tabla:", posicion)
    //cambio posicion al inicio del dia correspondiente
    switch (true) {
-      case (posicion > 12) && (posicion < 24):
-         posicion = 13;
-         console.log("1")
-         break;
       case (posicion > 23) && (posicion < 48):
          posicion = 25
-         console.log("2")
+         console.log("1")
          break;
       case (posicion > 47) && (posicion < 72):
          posicion = 49;
-         console.log("3")
+         console.log("2")
          break;
       case (posicion > 71) && (posicion < 96):
          posicion = 73;
-         console.log("4")
+         console.log("3")
          break;
       case (posicion > 95) && (posicion < 120):
          posicion = 97;
-         console.log("5")
+         console.log("4")
          break;
       case (posicion > 119) && (posicion < 144):
          posicion = 121;
-         console.log("6")
+         console.log("5")
          break;
       case (posicion > 143) && (posicion <= 168):
          posicion = 145;
-         console.log("7")
+         console.log("6")
          break;
       default:
          posicion = 0;
    }
    let hora = 0;
-   //lleno la tabla
+   console.log("posicion en llenar tabla:", posicion)
    let tabla = document.getElementById('tabla');
+   //lleno la tabla
    for (i = 1; i < 9; i++) {
       tabla.innerHTML += `
    <tr  class="table-secondary">
@@ -190,11 +188,13 @@ function climaHoy(data, fecha) {
 function eventoClick(data, fecha) {
    document.querySelectorAll(".card").forEach(element => {
       element.addEventListener("click", elemento => {
-         const id = elemento.target.getAttribute("id"); 
-         console.log(id);
-         switch (id) {
+         let ident = element.id; 
+         console.log(ident);
+         switch (ident) {
             case "card1":
                let undia = moment().add(1, 'd').startOf('hour').format('YYYY-MM-DD\THH:mm');
+               //vacio la tabla antes de pasarle los nuevos datos
+               
                llenarTabla(data, undia);
                console.log(undia);
                break;
