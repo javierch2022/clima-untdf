@@ -75,33 +75,32 @@ function llenarTabla(data, fecha) {
    let tabla = document.getElementById('tabla');
    //lleno la tabla
    for (i = 1; i < 9; i++) {
+      
       tabla.innerHTML += `
    <tr  class="table-secondary" type="form">
-         <th scope="row">${hora}</th>
-         <td>imagen</td>
-         <td>${datos.temperature_2m[posicion]}</td>
-         <td>${datos.apparent_temperature[posicion]}</td>
-         <td>${datos.precipitation[posicion]}</td>
-         <td>${datos.windspeed_10m[posicion]}</td>
+         <th id="tablaFondo" scope="row">${hora}</th>
+         <td id="tablaFondo">${datos.temperature_2m[posicion]}</td>
+         <td id="tablaFondo">${datos.apparent_temperature[posicion]}</td>
+         <td id="tablaFondo">${datos.precipitation[posicion]}</td>
+         <td id="tablaFondo">${datos.windspeed_10m[posicion]}</td>
    </tr>`
       //voy cambiando la hora y la posicion para tomar los datos siguientes (cada 3 hs)
       hora += 3;
       posicion += 3;
    }
-
    return
 }
 
 function obtenerDiaSemana(numDia) {
    let dia;
    const dias = [
-      'domingo',
-      'lunes',
-      'martes',
-      'miércoles',
-      'jueves',
-      'viernes',
-      'sábado',
+      'Domingo',
+      'Lunes',
+      'Martes',
+      'Miércoles',
+      'Jueves',
+      'Viernes',
+      'Sábado',
    ];
    if (numDia >= 7) {
       numDia = numDia - 7
@@ -129,9 +128,9 @@ function datosEnCards(data, fecha) {
       card.innerHTML += `        
       <div id= ${idcard[i-1]} class="card" type="button" >
                   <div class="card-body">
-                      <h5 class="card-title">${dia}</h5><br>
+                      <h5 class="card-title">${dia} </h5><br>
                       <img id= "test" src=${imagen} class="card-img-top" alt="...">
-                      <h1>${dato.temperature_2m[posicion]}</h1>
+                      <h1>${dato.temperature_2m[posicion]} °</h1>
                   </div>
       </div>
                     `
@@ -156,21 +155,20 @@ function climaHoy(data, fecha) {
    let temperatura = document.getElementById('temp')
    temperatura.innerHTML = `
                  <div>
-                    <h2>Temperatura</h2>
                     <h1 id=temp1>${data.hourly.temperature_2m[posicion]}°</h1>
                  </div> `;
    // este bloque para la condicion del dia
    let condicion = document.getElementById('condicion')
    condicion.innerHTML = `
-                  <div> 
+                  <div id="condicion1"> 
                     <h3>Sensacion Termica</h3>
                      <h1 id="condicion1">${data.hourly.apparent_temperature[posicion]} °</h1>
                   </div>
-                  <div> 
+                  <div id="condicion1"> 
                      <h3>Precipitacion</h3>
                      <h1 id="condicion1">${data.hourly.precipitation[posicion]} %</h1>
                   </div> 
-                  <div> 
+                  <div id="condicion1"> 
                      <h3>Velocidad del Viento</h3>
                      <h1 id="condicion1">${data.hourly.windspeed_10m[posicion]} Km/h</h1>
                   </div>`;
@@ -193,7 +191,6 @@ function borrar(){
       tabla.innerHTML -= `
    <tr  class="table-secondary" type="form">
       <th scope="row"></th>
-         <td>imagen</td>
          <td></td>
          <td></td>
          <td></td>

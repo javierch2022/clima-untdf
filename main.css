@@ -1,7 +1,60 @@
 body{
-    background: linear-gradient(0deg, rgba(32,13,98,1) 51%, rgba(47,227,219,1) 95%);
-    color:white;   
+    font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif; 
+    /*background: linear-gradient(0deg, rgba(32,13,98,1) 51%, rgba(47,227,219,1) 95%);
+    color:white;  */
+    background-image:url("./img/dia.png");
+    /*background-image:url("./img/dia2.png");*/
+    /*background-image:url("./img/tarde.png");*/
+    /*background-image:url("./img/noche1.png");*/
+       background-repeat:no-repeat;
+    background-position-x:center;
+    background-position-y:center;
+    background-size: cover;
+    color:rgb(255, 255, 255);
 }
+#test1{
+    display:flex;
+    align-items: center;
+    margin-top:20px;
+    margin-left: 20px;
+}
+#temp1{
+    margin-left: 20px;
+    font-size:12rem;
+    margin-bottom:70px;
+    justify-items: center;
+    
+}
+#dia{
+    margin-left: 25px;
+}
+
+#test2{
+    display:flex;
+    align-items: center;
+    justify-content: left;
+}
+#imagen{
+    margin-left: 60px;
+    margin-top: 40px;
+}
+#condicion1{
+    font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif; 
+    color: #ffffff; 
+    font-size: 32px; 
+    font-weight: 400; 
+    text-align: center; 
+    background: #2b3754b0;
+    margin: 0 0 25px; 
+    overflow: hidden; 
+    padding: 20px; 
+    border-radius: 35px 0px 35px 0px; 
+    -moz-border-radius: 35px 0px 35px 0px; 
+    -webkit-border-radius: 35px 0px 35px 0px; 
+    border: 2px solid #2e50a7;
+}
+
+/*///////////////////////////*/
 
 #title{
     font-size: 7rem;
@@ -18,11 +71,7 @@ body{
     text-align: center;
     margin-bottom: 100px;
 }
-#temp1{
-    font-size:6rem;
-    margin-bottom:70px;
-    justify-items: center;
-}
+
 #section3{
     display:flex;
     margin-left:5px;
@@ -38,20 +87,24 @@ body{
 }
 
 #card1,#card2,#card3,#card4,#card5,#card6{
+    margin-top: 50px;
     text-align: center;
     justify-content:center;
     align-items: center;
     width: 28%;
     height: 50%;
-    border-radius: 10%;
-    border-color: rgb(146, 144, 144);
-    background: radial-gradient(circle, rgba(252,220,152,1) 7%, rgba(63,245,251,1) 19%, rgba(25,103,174,1) 50%, rgba(5,30,134,1) 90%);
+    border-radius: 5px 10px 50px 5px;
+    border: 1px solid #666666;
+    background: #404041b0;
+
 }
 #test{
     width:120px;
 }
 
-
+.table{
+    text-align: center;
+}
 /* estilos para java script*/
 
 #imagen1{
@@ -64,4 +117,9 @@ body{
     justify-content: space-around;
     margin-left: 30px;
     
+}
+#tablaFondo{
+    font-size: 20px;
+    color:white;
+    background-color:rgba(16, 25, 29, 0.648);
 }
