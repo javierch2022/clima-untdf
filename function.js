@@ -37,7 +37,7 @@ function selectImagenClima(data, fecha) {
 }
 
 function llenarTabla(data, fecha) {
-   
+
    let posicion = buscarPosicion(data, fecha);
    let datos = data.hourly;
    console.log("posicion en llenar tabla:", posicion)
@@ -75,7 +75,7 @@ function llenarTabla(data, fecha) {
    let tabla = document.getElementById('tabla');
    //lleno la tabla
    for (i = 1; i < 9; i++) {
-      
+
       tabla.innerHTML += `
    <tr  class="table-secondary" type="form">
          <th id="tablaFondo" scope="row">${hora}</th>
@@ -185,8 +185,8 @@ function climaHoy(data, fecha) {
 }
 
 
-function borrar(){
-   tabla=document.getElementById('tabla')
+function borrar() {
+   tabla = document.getElementById('tabla')
    for (i = 1; i < 9; i++) {
       tabla.innerHTML -= `
    <tr  class="table-secondary" type="form">
@@ -195,7 +195,8 @@ function borrar(){
          <td></td>
          <td></td>
          <td></td>
-   </tr>`}
+   </tr>`
+   }
 }
 
 
@@ -203,7 +204,7 @@ function eventoClick(data, fecha) {
 
    document.querySelectorAll(".card").forEach(element => {
       element.addEventListener("click", elemento => {
-         let ident = element.id; 
+         let ident = element.id;
          console.log(ident);
          switch (ident) {
             case "card1":
@@ -243,12 +244,13 @@ function eventoClick(data, fecha) {
                llenarTabla(data, seisdias);
                console.log(seisdias);
                break;
-            default: llenarTabla(data,fecha);
+            default:
+               llenarTabla(data, fecha);
          }
 
       })
    })
-   
+
 }
 
 fetch(apiClima)
@@ -258,5 +260,5 @@ fetch(apiClima)
       let ahora = moment().startOf('hour').format('YYYY-MM-DD\THH:mm');
       climaHoy(data, ahora);
       datosEnCards(data, ahora);
-      eventoClick(data,ahora);
-      });
+      eventoClick(data, ahora);
+   });
