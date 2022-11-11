@@ -100,6 +100,8 @@ body{
 }
 #test{
     width:120px;
+    margin-left: 50px;
+    
 }
 
 .table{
@@ -122,4 +124,9 @@ body{
     font-size: 20px;
     color:white;
     background-color:rgba(16, 25, 29, 0.648);
+}
+#footer{
+    background-color: #666666;
+    text-align: center;
+    padding: 30px;
 }
