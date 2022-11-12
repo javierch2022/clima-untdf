@@ -1,4 +1,10 @@
 const apiClima = "https://api.open-meteo.com/v1/forecast?latitude=-54.82&longitude=-68.36&hourly=temperature_2m,apparent_temperature,precipitation,windspeed_10m&timezone=America%2FSao_Paulo";
+const temprano = "./img/dia.png";
+const mediodia = "./img/dia2.png";
+const tarde = "./img/tarde.png";
+const noche = "./img/noche1.png";
+
+
 
 function buscarPosicion(data, fecha) {
    let pos = 0
@@ -143,6 +149,7 @@ function datosEnCards(data, fecha) {
 
 function climaHoy(data, fecha) {
    let horaActual = new Date;
+   elegirfondo(data,fecha);
    let posicion = buscarPosicion(data, fecha);
    //este bloque para el dia y hora
    let dia = document.getElementById('dia')
@@ -253,6 +260,27 @@ function eventoClick(data, fecha) {
 
 }
 
+function elegirfondo(data, fecha) {
+   let fondo = document.getElementById("body");
+   let posicion = buscarPosicion(data, fecha);
+   let imagen;
+   switch (true) {
+      case (posicion < 10) && (posicion > 6):
+         imagen = temprano;
+         break;
+      case (posicion >= 10) && (posicion < 14):
+         imagen = mediodia;
+         break;
+      case (posicion >= 14) && (posicion < 20):
+         imagen = tarde;
+         break;
+      case (posicion >= 20) || (posicion < 6):
+         imagen = noche;
+         break;
+   }
+   fondo.style.backgroundImage = `url(${imagen})`;
+   return
+}
 fetch(apiClima)
    .then(response => response.json())
    .then(data => {
