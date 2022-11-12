@@ -37,8 +37,7 @@ function selectImagenClima(data, fecha) {
          ubicacion = "./img/icon/animated/severe-thunderstorm.svg";
          break;
    }
-   //TEST 
-   //console.log(ubicacion);
+
    return ubicacion;
 }
 
@@ -50,38 +49,30 @@ function llenarTabla(data, fecha) {
    //cambio posicion al inicio del dia correspondiente
    switch (true) {
       case (posicion > 23) && (posicion < 48):
-         posicion = 25
-         console.log("1")
+         posicion = 25;
          break;
       case (posicion > 47) && (posicion < 72):
          posicion = 49;
-         console.log("2")
          break;
       case (posicion > 71) && (posicion < 96):
          posicion = 73;
-         console.log("3")
          break;
       case (posicion > 95) && (posicion < 120):
          posicion = 97;
-         console.log("4")
          break;
       case (posicion > 119) && (posicion < 144):
          posicion = 121;
-         console.log("5")
          break;
       case (posicion > 143) && (posicion <= 168):
          posicion = 145;
-         console.log("6")
          break;
       default:
          posicion = 0;
    }
    let hora = 0;
-   console.log("posicion en llenar tabla:", posicion)
    let tabla = document.getElementById('tabla');
    //lleno la tabla
    for (i = 1; i < 9; i++) {
-
       tabla.innerHTML += `
    <tr  class="table-secondary" type="form">
          <th id="tablaFondo" scope="row">${hora}</th>
@@ -122,10 +113,8 @@ function datosEnCards(data, fecha) {
    let dato = data.hourly;
    let posicion = buscarPosicion(data, fecha) + 24;
    // creo las cards de los dias siguientes
-
    let card = document.getElementById('section3');
    for (i = 1; i < 7; i++) {
-      console.log(idcard[i - 1]);
       dia = obtenerDiaSemana(numeroDia);
       //cambio la fecha al dia siguiente para seleccionar la imagen
       fecha = dato.time[posicion];
@@ -149,7 +138,7 @@ function datosEnCards(data, fecha) {
 
 function climaHoy(data, fecha) {
    let horaActual = new Date;
-   elegirfondo(data,fecha);
+   elegirfondo(data, fecha);
    let posicion = buscarPosicion(data, fecha);
    //este bloque para el dia y hora
    let dia = document.getElementById('dia')
@@ -157,7 +146,6 @@ function climaHoy(data, fecha) {
                 <div >
                    <h5>${horaActual}</h5>
                 </div> `;
-   //TEST console.log(posicion);
    // este bloque para el numbero de temperatura
    let temperatura = document.getElementById('temp')
    temperatura.innerHTML = `
@@ -180,7 +168,6 @@ function climaHoy(data, fecha) {
                      <h1 id="condicion1">${data.hourly.windspeed_10m[posicion]} Km/h</h1>
                   </div>`;
    // este bloque para la imagen
-
    let ubicacion = selectImagenClima(data, fecha);
    let imagen = document.getElementById('imagen')
    imagen.innerHTML = `
@@ -190,7 +177,6 @@ function climaHoy(data, fecha) {
    llenarTabla(data, fecha);
    return
 }
-
 
 function borrar() {
    tabla = document.getElementById('tabla')
@@ -206,58 +192,46 @@ function borrar() {
    }
 }
 
-
 function eventoClick(data, fecha) {
-
    document.querySelectorAll(".card").forEach(element => {
       element.addEventListener("click", elemento => {
          let ident = element.id;
-         console.log(ident);
          switch (ident) {
             case "card1":
                borrar();
                let undia = moment().add(1, 'd').startOf('hour').format('YYYY-MM-DD\THH:mm');
                llenarTabla(data, undia);
-               console.log(undia);
                break;
             case "card2":
                borrar();
                let dosdias = moment().add(2, 'd').startOf('hour').format('YYYY-MM-DD\THH:mm');
                llenarTabla(data, dosdias);
-               console.log(dosdias);
-               testBorrar
                break;
             case "card3":
                borrar();
                let tresdias = moment().add(3, 'd').startOf('hour').format('YYYY-MM-DD\THH:mm');
                llenarTabla(data, tresdias);
-               console.log(tresdias);
                break;
             case "card4":
                borrar();
                let cuatrodias = moment().add(4, 'd').startOf('hour').format('YYYY-MM-DD\THH:mm');
                llenarTabla(data, cuatrodias);
-               console.log(cuatrodias);
                break;
             case "card5":
                borrar();
                let cincodias = moment().add(5, 'd').startOf('hour').format('YYYY-MM-DD\THH:mm');
                llenarTabla(data, cincodias);
-               console.log(cincodias);
                break;
             case "card6":
                borrar();
                let seisdias = moment().add(6, 'd').startOf('hour').format('YYYY-MM-DD\THH:mm');
                llenarTabla(data, seisdias);
-               console.log(seisdias);
                break;
             default:
                llenarTabla(data, fecha);
          }
-
       })
    })
-
 }
 
 function elegirfondo(data, fecha) {
