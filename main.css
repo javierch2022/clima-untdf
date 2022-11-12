@@ -1,95 +1,107 @@
-body{
-    font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif; 
+body {
+    font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
     /*background: linear-gradient(0deg, rgba(32,13,98,1) 51%, rgba(47,227,219,1) 95%);
     color:white;  */
     /*background-image:url("./img/dia.png");*/
     /*background-image:url("./img/dia2.png");*/
     /*background-image:url("./img/tarde.png");*/
     /*background-image:url("./img/noche1.png");*/
-       background-repeat:no-repeat;
-    background-position-x:center;
-    background-position-y:center;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
     background-size: cover;
-    color:rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
 }
-#test1{
-    display:flex;
+
+#test1 {
+    display: flex;
     align-items: center;
-    margin-top:20px;
+    margin-top: 40px;
     margin-left: 20px;
 }
-#temp1{
+
+#temp1 {
     margin-left: 20px;
-    font-size:12rem;
-    margin-bottom:70px;
+    font-size: 12rem;
+    margin-bottom: 70px;
     justify-items: center;
-    
+
 }
-#dia{
+
+#dia {
     margin-left: 25px;
 }
 
-#test2{
-    display:flex;
+#test2 {
+    display: flex;
     align-items: center;
     justify-content: left;
 }
-#imagen{
+
+#imagen {
     margin-left: 60px;
     margin-top: 40px;
 }
-#condicion1{
-    font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif; 
-    color: #ffffff; 
-    font-size: 32px; 
-    font-weight: 400; 
-    text-align: center; 
+
+#condicion1 {
+    font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 400;
+    text-align: center;
     background: #2b3754b0;
-    margin: 0 0 25px; 
-    overflow: hidden; 
-    padding: 20px; 
-    border-radius: 35px 0px 35px 0px; 
-    -moz-border-radius: 35px 0px 35px 0px; 
-    -webkit-border-radius: 35px 0px 35px 0px; 
+    margin: 0 0 25px;
+    overflow: hidden;
+    padding: 20px;
+    border-radius: 35px 0px 35px 0px;
+    -moz-border-radius: 35px 0px 35px 0px;
+    -webkit-border-radius: 35px 0px 35px 0px;
     border: 2px solid #2e50a7;
 }
 
 /*///////////////////////////*/
 
-#title{
+#title {
     font-size: 7rem;
 }
 
-#section1{
-    margin-top:50px;
+#section1 {
+    margin-top: 50px;
     justify-items: center;
     text-align: center;
 }
-#section2{
-    margin-top:50px;
+
+#section2 {
+    margin-top: 50px;
     justify-items: center;
     text-align: center;
     margin-bottom: 100px;
 }
 
-#section3{
-    display:flex;
-    margin-left:5px;
-    margin-right:5px;
+#section3 {
+    display: flex;
+    margin-left: 5px;
+    margin-right: 5px;
     justify-content: center;
     margin-bottom: 50px;
 }
 
-.card{
-    margin-left:5px;
-    margin-right:5px;
+.card {
+    margin-left: 5px;
+    margin-right: 5px;
+
 
 }
 
-#card1,#card2,#card3,#card4,#card5,#card6{
+#card1,
+#card2,
+#card3,
+#card4,
+#card5,
+#card6 {
     margin-top: 50px;
     text-align: center;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
     width: 28%;
     height: 50%;
@@ -97,36 +109,55 @@ body{
     border: 1px solid #666666;
     background: #404041b0;
 
-}
-#test{
-    width:120px;
-    margin-left: 50px;
-    
+
 }
 
-.table{
+#test {
+    width: 120px;
+    margin-left: 50px;
+
+}
+
+.table {
     text-align: center;
 }
+
 /* estilos para java script*/
 
-#imagen1{
-    width:300px
+#imagen1 {
+    width: 300px
 }
 
-#condicion{
+#condicion {
     display: flex;
     text-align: center;
     justify-content: space-around;
     margin-left: 30px;
-    
+
 }
-#tablaFondo{
+
+#tablaFondo {
     font-size: 20px;
-    color:white;
-    background-color:rgba(16, 25, 29, 0.648);
+    color: white;
+    background-color: rgba(16, 25, 29, 0.648);
 }
-#footer{
+
+#footer {
     background-color: #666666;
     text-align: center;
     padding: 30px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(76, 159, 226);
+}
+
+#prueba {
+    margin-top: 80px;
+    margin-left: 30px;
 }

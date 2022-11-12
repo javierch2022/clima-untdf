@@ -121,12 +121,12 @@ function datosEnCards(data, fecha) {
       let imagen = selectImagenClima(data, fecha);
       //cards
       card.innerHTML += `        
-      <div id= ${idcard[i-1]} class="card" type="button" >
+      <div id= ${idcard[i-1]} class="card" type="button"><a href="#ver">
                   <div class="card-body">
                       <h5 class="card-title">${dia} </h5><br>
                       <img id= "test" src=${imagen} class="card-img-top" alt="...">
                       <h1>${dato.temperature_2m[posicion]} °</h1>
-                  </div>
+                  </div></a>
       </div>
                     `
       //cambio la posicion 24 hs y paso al dia siguiente
